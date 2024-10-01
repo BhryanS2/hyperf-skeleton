@@ -4,7 +4,7 @@ services:
     build:
       context: .docker/mysql
       dockerfile: Dockerfile
-    container_name: mysql-ss
+    container_name: mysql-ssl
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=userdb
@@ -20,7 +20,6 @@ services:
       context: .
     volumes:
       - ./:/opt/www
-      - ~/.ssh/McAfee.pem:/etc/ssl/certs/McAfee.pem
     tty: true
     ports:
       - 9501:9501
