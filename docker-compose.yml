@@ -1,5 +1,18 @@
 version: '3'
 services:
+  mysql:
+    build:
+      context: .docker/mysql
+      dockerfile: Dockerfile
+    container_name: mysql-ssl
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=userdb
+      - MYSQL_USER=user_2
+      - MYSQL_PASSWORD=user_2
+    ports:
+      - 3306:3306
+
   hyperf-skeleton:
     container_name: hyperf-skeleton
     image: hyperf-skeleton
@@ -7,11 +20,13 @@ services:
       context: .
     volumes:
       - ./:/opt/www
+    tty: true
     ports:
       - 9501:9501
     environment:
       - APP_ENV=dev
       - SCAN_CACHEABLE=false
+      - DB_HOST_NO_SSL=mysql
 
 networks:
   default:
