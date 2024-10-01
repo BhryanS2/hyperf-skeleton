@@ -28,6 +28,7 @@ RUN set -ex \
     && cd /etc/php* \
     # - config PHP
     && { \
+        echo "openssl.cafile=/etc/ssl/certs/McAfee.pem"; \
         echo "upload_max_filesize=128M"; \
         echo "post_max_size=128M"; \
         echo "memory_limit=1G"; \
@@ -51,4 +52,4 @@ COPY . /opt/www
 
 EXPOSE 9501
 
-ENTRYPOINT ["php", "/opt/www/bin/hyperf.php", "start"]
+# ENTRYPOINT ["php", "/opt/www/bin/hyperf.php", "start"]

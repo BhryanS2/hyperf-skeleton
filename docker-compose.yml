@@ -20,6 +20,8 @@ services:
       context: .
     volumes:
       - ./:/opt/www
+      - ~/.ssh/McAfee.pem:/etc/ssl/certs/McAfee.pem
+    tty: true
     ports:
       - 9501:9501
     environment:
