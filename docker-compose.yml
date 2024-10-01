@@ -1,28 +1,17 @@
 version: '3'
 services:
-  mysql_no_ssl:
-    image: mysql:8
-    container_name: mysql-for-hyperf-skeleton
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=userdb
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=user
-    ports:
-      - 3306:3306
-
-  mysql_ssl:
+  mysql:
     build:
       context: .docker/mysql
       dockerfile: Dockerfile
-    container_name: mysql-ssl-for-hyperf-skeleton
+    container_name: mysql-ss
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=userdb
       - MYSQL_USER=user_2
       - MYSQL_PASSWORD=user_2
     ports:
-      - 3307:3306
+      - 3306:3306
 
   hyperf-skeleton:
     container_name: hyperf-skeleton
@@ -36,7 +25,7 @@ services:
     environment:
       - APP_ENV=dev
       - SCAN_CACHEABLE=false
-      - DB_HOST_NO_SSL=mysql_no_ssl
+      - DB_HOST_NO_SSL=mysql
 
 networks:
   default:

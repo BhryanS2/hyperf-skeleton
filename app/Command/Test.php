@@ -27,12 +27,21 @@ class Test extends HyperfCommand
     {
         $default_connection = Db::connection("default");
         $no_ssl_connection = Db::connection("no_ssl");
-
+        echo "No SSL in DB without SSL:\n";
         var_dump(
-            $no_ssl_connection->select("Show tables;")
+            $no_ssl_connection->select("Show databases;")
         );
         var_dump(
             $no_ssl_connection->getPdo()->getAttribute(\PDO::ATTR_SERVER_VERSION)
+        );
+
+        echo "SSL in DB with SSL:\n";
+
+        var_dump(
+            $default_connection->select("Show databases;")
+        );
+        var_dump(
+            $default_connection->getPdo()->getAttribute(\PDO::ATTR_SERVER_VERSION)
         );
     }
 }

@@ -2,5 +2,4 @@
 ssl_ca=/etc/certs/ca.pem
 ssl_cert=/etc/certs/server-cert.pem
 ssl_key=/etc/certs/server-key.pem
-require_secure_transport=ON
 bind-address=0.0.0.0
