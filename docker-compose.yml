@@ -4,7 +4,7 @@ services:
     image: mysql:8
     container_name: mysql-for-hyperf-skeleton
     environment:
-      - MYSQL_ROOT_PASSWORD=test
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=userdb
       - MYSQL_USER=user
       - MYSQL_PASSWORD=user
@@ -16,6 +16,11 @@ services:
       context: .docker/mysql
       dockerfile: Dockerfile
     container_name: mysql-ssl-for-hyperf-skeleton
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=userdb
+      - MYSQL_USER=user_2
+      - MYSQL_PASSWORD=user_2
     ports:
       - 3307:3306
 

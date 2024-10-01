@@ -16,14 +16,15 @@
 # #       it has been declared, those changes will be discarded.
 # RUN ["/usr/local/bin/docker-entrypoint.sh", "mysqld", "--datadir", "/initialized-db"]
 
-FROM registry.gitlab.com/mova-general/images/mysql:8.0.31
+FROM mysql:8.0.31
 
 # COPY --from=builder /initialized-db /var/lib/mysql
+COPY create_user.sql  /docker-entrypoint-initdb.d/
 
-ENV MYSQL_ROOT_PASSWORD=root
+# ENV MYSQL_ROOT_PASSWORD=root
 
-RUN mysql -u root -proot -e "Show databases;"
+# RUN mysql -u root -proot -e "Show databases;"
 
-RUN mysql -u root -proot -e "CREATE USER 'user'@'%' IDENTIFIED BY 'user' REQUIRE X509;"
-RUN mysql -u root -proot -e "GRANT ALL PRIVILEGES ON userdb.* TO 'user'@'%';"
-RUN mysql -u root -proot -e "FLUSH PRIVILEGES;"
+# RUN mysql -u root -proot -e "CREATE USER 'user'@'%' IDENTIFIED BY 'user' REQUIRE X509;"
+# RUN mysql -u root -proot -e "GRANT ALL PRIVILEGES ON userdb.* TO 'user'@'%';"
+# RUN mysql -u root -proot -e "FLUSH PRIVILEGES;"
