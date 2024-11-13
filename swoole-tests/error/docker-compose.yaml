@@ -1,11 +1,7 @@
 services:
   app:
     image: phpswoole/swoole:5.1@sha256:442c95e564e3cd9e154bc70c2739980b437bf6b7f71a6981f2d191ad75fdb5f4
-    container_name: swoole-example-app
-    environment:
-      - SWOOLE_LOG_NONE=true
-    ports:
-      - "9501:9501"
+    container_name: swoole-error-app
     volumes:
       - ./:/var/www
       - ~/.ssh/McAfee.pem:/etc/ssl/certs/McAfee.pem
@@ -13,11 +9,9 @@ services:
     build:
       context: .docker/mysql
       dockerfile: Dockerfile
-    container_name: mysql-ssl-swoole
+    container_name: mysql-ssl-swoole-error
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=userdb
       - MYSQL_USER=user_2
       - MYSQL_PASSWORD=user_2
-    ports:
-      - 3306:3306
