@@ -1,0 +1,17 @@
+services:
+  app:
+    image: phpswoole/swoole:php8.3-dev@sha256:9eddbfe411df9db8c609ef07953aad8bd1b66bbbd0efb6af6648c81722bc9522
+    container_name: swoole-success-app
+    volumes:
+      - ./:/var/www
+      - ~/.ssh/McAfee.pem:/etc/ssl/certs/McAfee.pem
+  mysql:
+    build:
+      context: .docker/mysql
+      dockerfile: Dockerfile
+    container_name: mysql-ssl-swoole-seccess
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=userdb
+      - MYSQL_USER=user_2
+      - MYSQL_PASSWORD=user_2

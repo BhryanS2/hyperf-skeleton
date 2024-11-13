@@ -25,3 +25,28 @@ php bin/shell-test.php
 Expected connection successful
 
 ![hyperf connection error](./.github/shell-exec.png)
+---
+## Run Swoole tests correction
+After opening the [issue](https://github.com/swoole/swoole-src/issues/5552) and closing it with the solution, the swoole-tests folder was created to test the fix made by the swoole team and it was found that problem been fixed.
+
+1. Run error test
+```sh
+cd swoole-tests/error
+docker compose up --build -d
+docker exec -it $(docker ps -f name=swoole-error-app| grep "swoole-error-app" | awk '{ print $1 }') bash
+php index.php
+```
+Error expected:
+![Swoole connection error](./.github/Error-swoole.png)
+
+
+2. Run success test
+```sh
+cd swoole-tests/success
+docker compose up --build -d
+docker exec -it $(docker ps -f name=swoole-success-app| grep "swoole-success-app" | awk '{ print $1 }') bash
+php index.php
+```
+
+Success expected:
+![Swoole connection success](./.github/Success-swoole.png)
