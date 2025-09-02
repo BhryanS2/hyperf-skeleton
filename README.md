@@ -1,5 +1,5 @@
 ## How to reproduce bug
-1. Run docker compose
+1. Run docker-compose
 ```sh
 docker compose up -d --build
 ```
@@ -7,15 +7,15 @@ docker compose up -d --build
 ```sh
 docker exec -it $(docker ps -f name=hyperf-skeleton| grep "hyperf-skeleton" | awk '{ print $1 }') bash
 ```
-3. Install depencies
+3. Install dependencies
 ```sh
 composer install
 ```
-4. Run command hyperf to see the bug
+4. Run the command hyper of to see the bug
 ```sh
 php bin/hyperf.php test
 ```
-Error expected
+Error Expected:
 ![hyperf connection error](./.github/hyperf-conn.png)
 
 5. Run the shell exec connection
